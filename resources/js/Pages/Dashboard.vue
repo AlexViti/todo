@@ -27,13 +27,13 @@ export default {
             })
         },
         getTodoLists(){
-            axios.get('/api/todo-lists').then(response=>{
+            axios.get('/api/todo-lists').then(response => {
                 this.todoLists = response.data
             })
         }
     },
     mounted(){
-        axios.get('/api/user').then((res)=>{
+        axios.get('/api/user').then(res => {
             console.log(res);
             this.user = res.data
 

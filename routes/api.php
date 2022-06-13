@@ -24,4 +24,4 @@ Route::post('register', 'RegisterController@register');
 Route::post('login', 'LoginController@login');
 Route::post('logout', 'LoginController@logout');
 
-Route::post(('/todo-lists'), 'HomeController@todoLists');
+Route::post(('/api/todo-lists'), 'HomeController@todoLists');
