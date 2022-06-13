@@ -14,7 +14,7 @@ require('laravel-mix-purgecss');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css')
+    .sass('resources/sass/app.scss', 'public/css').vue({ version: 2 })
     .options({
         processCssUrls: false,
         postCss: [ tailwindcss('./tailwind.config.js') ],

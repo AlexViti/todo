@@ -1,9 +1,9 @@
-import Home from './components/Home';
-import About from './components/About';
-import Register from './components/Register';
-import Login from './components/Login';
-import Dashboard from './components/Dashboard';
-import NotFound from './components/NotFound';
+import Home from './pages/Home.vue';
+import About from './pages/About';
+import Register from './pages/Register';
+import Login from './pages/Login';
+import Dashboard from './pages/Dashboard';
+import NotFound from './pages/NotFound';
 
 
 export default{
@@ -12,7 +12,9 @@ export default{
     routes: [
         {
             path: '*',
-            component: NotFound
+            component: NotFound,
+            name: 'NotFound'
+
         },
         {
             path: '/',
@@ -21,11 +23,14 @@ export default{
         },
         {
             path: '/about',
-            component: About
+            component: About,
+            name: 'About'
+
         },
         {
             path: '/register',
-            component: Register
+            component: Register,
+            name: 'Register'
         },
         {
             path: '/login',
@@ -43,8 +48,8 @@ export default{
                    return next({ name: 'Login'})
                })
            }
-       
+
           }
-          
+
     ]
 }
