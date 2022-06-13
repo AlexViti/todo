@@ -34,7 +34,9 @@ export default {
     },
     mounted(){
         axios.get('/api/user').then((res)=>{
+            console.log(res);
             this.user = res.data
+
         }),
         this.getTodoLists()
     }

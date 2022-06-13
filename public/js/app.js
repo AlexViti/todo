@@ -2257,6 +2257,7 @@ __webpack_require__.r(__webpack_exports__);
     var _this3 = this;
 
     axios.get('/api/user').then(function (res) {
+      console.log(res);
       _this3.user = res.data;
     }), this.getTodoLists();
   }
@@ -2328,7 +2329,7 @@ __webpack_require__.r(__webpack_exports__);
     loginUser: function loginUser() {
       var _this = this;
 
-      axios.post('/api/login', this.form).then(function () {
+      axios.get('/api/login', this.form).then(function () {
         _this.$router.push({
           name: "Dashboard"
         });
@@ -20580,14 +20581,16 @@ var render = function () {
     [
       _c("router-link", { attrs: { to: { name: "Home" } } }, [_vm._v("Home")]),
       _vm._v(" "),
-      _c("router-link", { attrs: { to: { name: "About" } } }, [_vm._v("Blog")]),
-      _vm._v(" "),
-      _c("router-link", { attrs: { to: { name: "Login" } } }, [
+      _c("router-link", { attrs: { to: { name: "About" } } }, [
         _vm._v("About"),
       ]),
       _vm._v(" "),
+      _c("router-link", { attrs: { to: { name: "Login" } } }, [
+        _vm._v("Login"),
+      ]),
+      _vm._v(" "),
       _c("router-link", { attrs: { to: { name: "Register" } } }, [
-        _vm._v("Contact us"),
+        _vm._v("Register"),
       ]),
     ],
     1
