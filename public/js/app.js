@@ -2044,6 +2044,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Home',
   data: function data() {
@@ -20105,60 +20115,68 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "text-2xl text-gray-800" },
+    { staticClass: "text-gray-800" },
     [
       _vm._l(_vm.toDoLists, function(toDoList, i) {
         return _c("div", { key: i, staticClass: "flex" }, [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: toDoList.name,
-                expression: "toDoList.name"
-              }
-            ],
-            key: toDoList.refresh,
-            attrs: { disabled: !toDoList.edit, type: "text" },
-            domProps: { value: toDoList.name },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(toDoList, "name", $event.target.value)
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c("input", { attrs: { type: "color" } }),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "ml-auto",
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  return _vm.edit(toDoList)
-                }
-              }
-            },
-            [_vm._v("Edit")]
-          ),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "bg-red-600 text-white",
-              on: {
-                click: function($event) {
-                  return _vm.deleteList(toDoList)
-                }
-              }
-            },
-            [_vm._v("X")]
-          )
+          _c("div", [
+            _c("div", { staticClass: "flex" }, [
+              _c(
+                "h3",
+                {
+                  staticClass: "text-2xl",
+                  style: [
+                    toDoList.color
+                      ? {
+                          backgroundColor: _vm.toHex(toDoList.color),
+                          color: "#fff"
+                        }
+                      : {}
+                  ]
+                },
+                [_vm._v(_vm._s(toDoList.name))]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "ml-auto",
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      return _vm.edit(toDoList)
+                    }
+                  }
+                },
+                [_vm._v("Edit")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "bg-red-600 text-white",
+                  on: {
+                    click: function($event) {
+                      return _vm.deleteList(toDoList)
+                    }
+                  }
+                },
+                [_vm._v("X")]
+              )
+            ]),
+            _vm._v(" "),
+            _c("p", [_vm._v(_vm._s(toDoList.description))]),
+            _vm._v(" "),
+            _c(
+              "ul",
+              _vm._l(toDoList.todos, function(todo, i) {
+                return _c("li", { key: i, staticClass: "list-disc" }, [
+                  _c("p", [_vm._v(_vm._s(todo.title))])
+                ])
+              }),
+              0
+            )
+          ])
         ])
       }),
       _vm._v(" "),

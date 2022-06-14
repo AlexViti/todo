@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\TodoList;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -28,7 +29,7 @@ class HomeController extends Controller
 
     public function todoLists(Request $request)
     {
-        $todoLists = $request->user()->todoLists;
+        $todoLists = TodoList::with(['todos'])->where('user_id', $request->user()->id)->get();
         return response()->json($todoLists);
     }
 }
