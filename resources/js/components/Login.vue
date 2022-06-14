@@ -13,7 +13,7 @@
             <div class="p-2 w-full mt-4">
                 <button @click.prevent="loginUser" type="submit" class="flex text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Login</button>
             </div>
-        </div> 
+        </div>
     </div>
 </template>
 <script>
@@ -30,7 +30,8 @@ export default {
     methods:{
          loginUser(){
              axios.post('/api/login', this.form).then(() =>{
-                 this.$router.push({ name: "Dashboard"}); 
+                 this.$router.push({ name: "Dashboard"});
+                 this.$emit('login');
              }).catch((error) =>{
          this.errors = error.response.data.errors;
             })

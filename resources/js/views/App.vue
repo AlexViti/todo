@@ -16,7 +16,7 @@
         </div>
     </div>
     <div class="container mx-auto py-2">
-        <router-view :user="user" @></router-view>
+        <router-view :user="user" @logout="loggedOut" @login="loggedIn"></router-view>
     </div>
 </main>
 </template>
@@ -26,14 +26,20 @@ export default {
     name: 'App',
     data() {
         return {
-            user: null
+            user: null,
         }
     },
     methods: {
         getUser() {
             axios.get('/api/user').then(res => {
                 this.user = res.data
-            })
+            });
+        },
+        loggedOut() {
+            this.user = null
+        },
+        loggedIn() {
+            this.getUser()
         }
     },
     mounted() {

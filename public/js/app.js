@@ -2051,6 +2051,8 @@ __webpack_require__.r(__webpack_exports__);
         _this.$router.push({
           name: "Dashboard"
         });
+
+        _this.$emit('login');
       })["catch"](function (error) {
         _this.errors = error.response.data.errors;
       });
@@ -2187,6 +2189,12 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('/api/user').then(function (res) {
         _this.user = res.data;
       });
+    },
+    loggedOut: function loggedOut() {
+      this.user = null;
+    },
+    loggedIn: function loggedIn() {
+      this.getUser();
     }
   },
   mounted: function mounted() {
@@ -20364,7 +20372,7 @@ var render = function() {
       [
         _c("router-view", {
           attrs: { user: _vm.user },
-          on: { "": function($event) {} }
+          on: { logout: _vm.loggedOut, login: _vm.loggedIn }
         })
       ],
       1
