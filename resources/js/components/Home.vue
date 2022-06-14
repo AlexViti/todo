@@ -1,27 +1,14 @@
 <template>
     <div class="text-gray-800">
-        <div class="flex" v-for="(toDoList, i) in toDoLists" :key="i">
-            <!-- <input :disabled="!toDoList.edit" type="text" :key="toDoList.refresh" v-model="toDoList.name">
-            <input type="color" /> -->
-            <div>
-                <div class="flex">
-                    <h3 class="text-2xl" :style="[toDoList.color ? {backgroundColor: toHex(toDoList.color), color: '#fff'} : {}]">{{toDoList.name}}</h3>
-                    <button class="ml-auto" @click.prevent="edit(toDoList)">Edit</button>
-                    <button class="bg-red-600 text-white" @click="deleteList(toDoList)">X</button>
-                </div>
-                <p>{{toDoList.description}}</p>
-                <ul>
-                    <li class="list-disc" v-for="(todo, i) in toDoList.todos" :key="i">
-                        <p>{{todo.title}}</p>
-                    </li>
-                </ul>
-            </div>
-        </div>
+        <to-do-list v-for="(toDoList, i) in toDoLists" :key="i" :toDoList="toDoList" @refresh="getTodoLists" />
         <router-link to="/add-list">Add list</router-link>
     </div>
 </template>
 <script>
+import ToDoList from './ToDoList.vue';
+
 export default {
+  components: { ToDoList },
     name: 'Home',
     data() {
         return {
@@ -32,23 +19,7 @@ export default {
         getTodoLists() {
             axios.get('/api/todo-lists').then(response => {
                 this.toDoLists = response.data
-                this.toDoLists.map(list => {
-                    list.edit = false,
-                    list.refresh = 0
-                })
             })
-        },
-        toHex(number) {
-            return '#' + number.toString(16)
-        },
-        deleteList(toDoList) {
-            axios.delete(`/api/todo-lists/${toDoList.id}`).then(() => {
-                this.getTodoLists()
-            })
-        },
-        edit(toDoList) {
-            toDoList.edit = !toDoList.edit;
-            toDoList.refresh++
         }
     },
     mounted() {

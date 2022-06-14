@@ -33,9 +33,14 @@ class ToDoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store($id, Request $request)
     {
-        //
+        $todo = new ToDo();
+        $todo->todo_list_id = $id;
+        $todo->title = $request->title;
+        $todo->description = $request->description;
+        $todo->completed = $request->completed;
+        $todo->save();
     }
 
     /**
@@ -67,9 +72,10 @@ class ToDoController extends Controller
      * @param  \App\ToDo  $toDo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, ToDo $toDo)
+    public function update($todoListId, $id, Request $request)
     {
-        //
+        $todo = ToDo::find($id);
+        $todo->update($request->all());
     }
 
     /**

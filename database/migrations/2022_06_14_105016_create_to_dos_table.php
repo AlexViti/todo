@@ -15,7 +15,7 @@ class CreateToDosTable extends Migration
     {
         Schema::create('to_dos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('todo_list_id')->constrained();
+            $table->foreignId('todo_list_id')->constrained()->onDelete('cascade');
             $table->string('title');
             $table->text('description')->nullable();
             $table->boolean('completed')->default(false);

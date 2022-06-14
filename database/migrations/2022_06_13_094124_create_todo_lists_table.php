@@ -30,6 +30,7 @@ class CreateTodoListsTable extends Migration
      */
     public function down()
     {
+
         Schema::dropIfExists('todo_lists');
     }
 }

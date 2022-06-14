@@ -28,3 +28,6 @@ Route::get(('/todo-lists'), 'HomeController@todoLists');
 Route::post(('/todo-lists'), 'TodoListController@store');
 Route::put(('/todo-lists/{id}'), 'TodoListController@update');
 Route::delete(('/todo-lists/{id}'), 'TodoListController@destroy');
+
+Route::post(('/todo-lists/{id}/todos'), 'TodoController@store');
+Route::put(('/todo-lists/{id}/todos/{todoId}'), 'TodoController@update');
