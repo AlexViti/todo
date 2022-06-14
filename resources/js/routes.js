@@ -5,7 +5,6 @@ import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import NotFound from './components/NotFound';
 
-
 export default{
     mode: 'history',
     linkActiveClass: 'font-semibold',
@@ -16,11 +15,19 @@ export default{
         },
         {
             path: '/',
+            name: "Home",
             component: Home,
-            name: "Home"
+            beforeEnter: (to, form, next) => {
+                axios.get('/api/athenticated').then(()=>{
+                    next()
+                }).catch(()=>{
+                    return next({ name: 'About'})
+                })
+            }
         },
         {
             path: '/about',
+            name: "About",
             component: About
         },
         {
@@ -36,15 +43,13 @@ export default{
             path: "/dashboard",
             name: "Dashboard",
             component: Dashboard,
-           beforeEnter: (to, form, next) =>{
-               axios.get('/api/athenticated').then(()=>{
-                   next()
-               }).catch(()=>{
-                   return next({ name: 'Login'})
-               })
-           }
-       
-          }
-          
+            beforeEnter: (to, form, next) => {
+                axios.get('/api/athenticated').then(()=>{
+                    next()
+                }).catch(()=>{
+                    return next({ name: 'Login'})
+                })
+            }
+        }
     ]
 }
