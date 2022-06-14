@@ -35,7 +35,11 @@ class TodoListController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $todoList = new TodoList();
+        $todoList->name = $request->name;
+        $todoList->user_id = $request->user_id;
+        $todoList->color = $request->color;
+        $todoList->save();
     }
 
     /**
@@ -78,8 +82,11 @@ class TodoListController extends Controller
      * @param  \App\TodoList  $todoList
      * @return \Illuminate\Http\Response
      */
-    public function destroy(TodoList $todoList)
+    public function destroy(Request $request)
     {
-        //
+        if ($request->id) {
+            $todoList = TodoList::find($request->id);
+            $todoList->delete();
+        }
     }
 }

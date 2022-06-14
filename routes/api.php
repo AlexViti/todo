@@ -25,3 +25,6 @@ Route::post('login', 'LoginController@login');
 Route::post('logout', 'LoginController@logout');
 
 Route::get(('/todo-lists'), 'HomeController@todoLists');
+Route::post(('/todo-lists'), 'TodoListController@store');
+Route::put(('/todo-lists/{id}'), 'TodoListController@update');
+Route::delete(('/todo-lists/{id}'), 'TodoListController@destroy');

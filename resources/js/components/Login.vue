@@ -1,5 +1,5 @@
 <template>
-     <div class="flex flex-wrap w-full justify-center items-center pt-56">
+    <div class="flex flex-wrap w-full justify-center items-center pt-56">
         <div class="flex flex-wrap max-w-xl">
             <div class="p-2 text-2xl text-gray-800 font-semibold"><h1>Login to your account</h1></div>
             <div class="p-2 w-full">
@@ -13,6 +13,10 @@
             <div class="p-2 w-full mt-4">
                 <button @click.prevent="loginUser" type="submit" class="flex text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Login</button>
             </div>
+        </div>
+
+        <div class="error-message" v-if="errors">
+            <p v-for="(error, i) in errors.email || errors.password" :key="i">{{error}}</p>
         </div>
     </div>
 </template>
@@ -33,7 +37,8 @@ export default {
                  this.$router.push({ name: "Dashboard"});
                  this.$emit('login');
              }).catch((error) =>{
-         this.errors = error.response.data.errors;
+                this.errors = error.response.data.errors;
+                console.log(this.errors);
             })
          }
     }

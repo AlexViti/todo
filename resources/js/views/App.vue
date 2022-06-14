@@ -33,7 +33,9 @@ export default {
         getUser() {
             axios.get('/api/user').then(res => {
                 this.user = res.data
-            });
+            }).catch(err => {
+                this.user = null
+            })
         },
         loggedOut() {
             this.user = null

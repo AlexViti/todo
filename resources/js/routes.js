@@ -4,6 +4,7 @@ import Register from './components/Register';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import NotFound from './components/NotFound';
+import AddList from './components/AddList';
 
 export default{
     mode: 'history',
@@ -50,6 +51,11 @@ export default{
                     return next({ name: 'Login'})
                 })
             }
+        },
+        {
+            path: "/add-list",
+            name: "AddList",
+            component: AddList,
         }
     ]
 }
