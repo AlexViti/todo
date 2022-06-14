@@ -29,12 +29,19 @@ export default {
     },
     methods:{
          loginUser(){
-             axios.get('/api/login', this.form).then(() =>{
-                 this.$router.push({ name: "Dashboard"});
-             }).catch((error) =>{
-         this.errors = error.response.data.errors;
-            })
+            // Check for CSRF token
+                // let csrf = RegExp('XSRF-TOKEN[^;]+').exec(document.cookie)
+                // csrf = decodeURIComponent(csrf ? csrf.toString().replace(/^[^=]+./, '') : '')
+
+                // if (csrf) {
+                // let headers = headers.append('X-XSRF-TOKEN', csrf)
+                // }
+
+             axios.get('api/login', this.form).then(() =>{
+                this.$router.push({ name: "Dashboard"});  //qui il problema
+             }).catch(() => {});
          }
     }
 }
 </script>
+

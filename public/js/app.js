@@ -2329,13 +2329,18 @@ __webpack_require__.r(__webpack_exports__);
     loginUser: function loginUser() {
       var _this = this;
 
-      axios.get('/api/login', this.form).then(function () {
+      // Check for CSRF token
+      // let csrf = RegExp('XSRF-TOKEN[^;]+').exec(document.cookie)
+      // csrf = decodeURIComponent(csrf ? csrf.toString().replace(/^[^=]+./, '') : '')
+      // if (csrf) {
+      // let headers = headers.append('X-XSRF-TOKEN', csrf)
+      // }
+      axios.get('api/login', this.form).then(function () {
         _this.$router.push({
           name: "Dashboard"
-        });
-      })["catch"](function (error) {
-        _this.errors = error.response.data.errors;
-      });
+        }); //qui il problema
+
+      })["catch"](function () {});
     }
   }
 });
@@ -2475,17 +2480,42 @@ Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 
 
+var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"](_routes__WEBPACK_IMPORTED_MODULE_1__["default"]);
 var app = new Vue({
   el: '#app',
   render: function render(h) {
     return h(_views_App_vue__WEBPACK_IMPORTED_MODULE_2__["default"]);
   },
-  router: new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"](_routes__WEBPACK_IMPORTED_MODULE_1__["default"])
+  router: router
 }); // const app = new Vue({
 //     el: '#app',
 //     render: h => h(App),
 //     router,
 // });
+
+/**
+ * Do not throw an exception if push is rejected by redirection from navigation guard
+ */
+
+var originalPush = router.push;
+
+router.push = function push(location, onResolve, onReject) {
+  if (onResolve || onReject) {
+    return originalPush.call(this, location, onResolve, onReject);
+  }
+
+  return originalPush.call(this, location)["catch"](function (err) {
+    var reg = new RegExp('^Redirected when going from "[a-z_.\\/]+" to "[a-z_.\\/]+" via a navigation guard.$');
+
+    if (reg.test(err.message)) {
+      // If pushing interrupted because of redirection from navigation guard - ignore it.
+      return Promise.resolve(false);
+    } // Otherwise throw error
+
+
+    return Promise.reject(err);
+  });
+};
 
 /***/ }),
 
