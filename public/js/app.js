@@ -2322,25 +2322,37 @@ __webpack_require__.r(__webpack_exports__);
         email: '',
         password: ''
       },
-      errors: []
+      errors: [],
+      baseUrl: ''
     };
   },
   methods: {
     loginUser: function loginUser() {
       var _this = this;
 
-      // Check for CSRF token
-      // let csrf = RegExp('XSRF-TOKEN[^;]+').exec(document.cookie)
-      // csrf = decodeURIComponent(csrf ? csrf.toString().replace(/^[^=]+./, '') : '')
-      // if (csrf) {
-      // let headers = headers.append('X-XSRF-TOKEN', csrf)
+      axios.get('sanctum/csrf-cookie').then(function (response) {
+        axios.get('api/login', _this.form).then(function () {
+          _this.$router.push({
+            name: "Dashboard"
+          });
+        })["catch"](function () {});
+      }); // axios.get('/sanctum/csrf-cookie').then(response => {
+      // axios.post('api/login', this.form).then(res =>{
+      // if(res.data.status === 200){
+      //     localStorage.setItem('auth_token', res.data.token);
+      //     localStorage.setItem('auth_name', res.data.username);
+      //     swal("Success", res.data.message,"success");
+      //     console.log(res.data.username);
+      //     history.push('/');
       // }
-      axios.get('api/login', this.form).then(function () {
-        _this.$router.push({
-          name: "Dashboard"
-        }); //qui il problema
-
-      })["catch"](function () {});
+      // else if(res.data.status === 401){
+      //     swal("Warning", res.data.message,"warning");
+      // }
+      // else{
+      //     setLogin({...loginInput,error_list:res.data.validation_errors});
+      // }
+      //     });
+      // });
     }
   }
 });
@@ -2527,7 +2539,15 @@ router.push = function push(location, onResolve, onReject) {
 
 window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+axios.defaults.withCredentials = true;
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+axios.defaults.headers.post['Content-Type'] = 'application/json';
+axios.defaults.headers.post['Accept'] = 'application/json';
+axios.interceptors.request.use(function (config) {
+  var token = localStorage.getItem('auth_token');
+  config.headers.Authorization = token ? 'Bearer ${}' : '';
+  return config;
+});
 
 /***/ }),
 

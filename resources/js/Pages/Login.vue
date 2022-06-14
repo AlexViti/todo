@@ -22,25 +22,42 @@ export default {
         return{
             form:{
                 email: '',
-                password: ''
+                password: '',
             },
-            errors: []
+            errors: [],
+            baseUrl: ''
         }
     },
     methods:{
          loginUser(){
-            // Check for CSRF token
-                // let csrf = RegExp('XSRF-TOKEN[^;]+').exec(document.cookie)
-                // csrf = decodeURIComponent(csrf ? csrf.toString().replace(/^[^=]+./, '') : '')
 
-                // if (csrf) {
-                // let headers = headers.append('X-XSRF-TOKEN', csrf)
-                // }
+            axios.get('sanctum/csrf-cookie').then(response => {
+                axios.get('api/login', this.form).then(() =>{
+                    this.$router.push({ name: "Dashboard"});
+                }).catch(() => {});
+            });
 
-             axios.get('api/login', this.form).then(() =>{
-                this.$router.push({ name: "Dashboard"});  //qui il problema
-             }).catch(() => {});
-         }
+
+            // axios.get('/sanctum/csrf-cookie').then(response => {
+            // axios.post('api/login', this.form).then(res =>{
+            // if(res.data.status === 200){
+            //     localStorage.setItem('auth_token', res.data.token);
+            //     localStorage.setItem('auth_name', res.data.username);
+            //     swal("Success", res.data.message,"success");
+            //     console.log(res.data.username);
+            //     history.push('/');
+
+            // }
+            // else if(res.data.status === 401){
+            //     swal("Warning", res.data.message,"warning");
+            // }
+            // else{
+            //     setLogin({...loginInput,error_list:res.data.validation_errors});
+            // }
+//     });
+// });
+            }
+
     }
 }
 </script>

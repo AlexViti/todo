@@ -14,6 +14,14 @@ use Illuminate\Support\Facades\Request;
 |
 */
 
+
+Route::post('/tokens/create', function (Request $request) {
+    $token = $request->user()->createToken($request->token_name);
+
+    return ['token' => $token->plainTextToken];
+});
+
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -25,3 +33,8 @@ Route::post('/login', 'LoginController@login');
 Route::post('/logout', 'LoginController@logout');
 
 Route::post(('/todo-lists'), 'HomeController@todoLists');
+
+
+
+
+
