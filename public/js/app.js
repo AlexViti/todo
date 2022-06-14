@@ -2041,6 +2041,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Home',
   data: function data() {
@@ -2054,6 +2057,10 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/api/todo-lists').then(function (response) {
         _this.toDoLists = response.data;
+
+        _this.toDoLists.map(function (list) {
+          list.edit = false, list.refresh = 0;
+        });
       });
     },
     toHex: function toHex(number) {
@@ -2065,6 +2072,10 @@ __webpack_require__.r(__webpack_exports__);
       axios["delete"]("/api/todo-lists/".concat(toDoList.id)).then(function () {
         _this2.getTodoLists();
       });
+    },
+    edit: function edit(toDoList) {
+      toDoList.edit = !toDoList.edit;
+      toDoList.refresh++;
     }
   },
   mounted: function mounted() {
@@ -20098,19 +20109,42 @@ var render = function() {
     [
       _vm._l(_vm.toDoLists, function(toDoList, i) {
         return _c("div", { key: i, staticClass: "flex" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: toDoList.name,
+                expression: "toDoList.name"
+              }
+            ],
+            key: toDoList.refresh,
+            attrs: { disabled: !toDoList.edit, type: "text" },
+            domProps: { value: toDoList.name },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(toDoList, "name", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _c("input", { attrs: { type: "color" } }),
+          _vm._v(" "),
           _c(
-            "h3",
+            "button",
             {
-              style: [
-                toDoList.color
-                  ? {
-                      backgroundColor: _vm.toHex(toDoList.color),
-                      color: "#fff"
-                    }
-                  : {}
-              ]
+              staticClass: "ml-auto",
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.edit(toDoList)
+                }
+              }
             },
-            [_vm._v(_vm._s(toDoList.name))]
+            [_vm._v("Edit")]
           ),
           _vm._v(" "),
           _c(

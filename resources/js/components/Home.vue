@@ -1,7 +1,10 @@
 <template>
     <div class="text-2xl text-gray-800">
         <div class="flex" v-for="(toDoList, i) in toDoLists" :key="i">
-            <h3 :style="[toDoList.color ? {backgroundColor: toHex(toDoList.color), color: '#fff'} : {}]">{{toDoList.name}}</h3>
+            <input :disabled="!toDoList.edit" type="text" :key="toDoList.refresh" v-model="toDoList.name">
+            <input type="color" />
+            <!-- <h3 v-if="!toDoList.edit" :style="[toDoList.color ? {backgroundColor: toHex(toDoList.color), color: '#fff'} : {}]">{{toDoList.name}}</h3> -->
+            <button class="ml-auto" @click.prevent="edit(toDoList)">Edit</button>
             <button class="bg-red-600 text-white" @click="deleteList(toDoList)">X</button>
         </div>
         <router-link to="/add-list">Add list</router-link>
@@ -12,13 +15,17 @@ export default {
     name: 'Home',
     data() {
         return {
-            toDoLists: []
+            toDoLists: [],
         }
     },
     methods: {
         getTodoLists() {
             axios.get('/api/todo-lists').then(response => {
                 this.toDoLists = response.data
+                this.toDoLists.map(list => {
+                    list.edit = false,
+                    list.refresh = 0
+                })
             })
         },
         toHex(number) {
@@ -28,6 +35,10 @@ export default {
             axios.delete(`/api/todo-lists/${toDoList.id}`).then(() => {
                 this.getTodoLists()
             })
+        },
+        edit(toDoList) {
+            toDoList.edit = !toDoList.edit;
+            toDoList.refresh++
         }
     },
     mounted() {
