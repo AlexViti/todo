@@ -11,6 +11,7 @@
                 <router-link to='/register'>Register</router-link>
             </div>
             <div v-else class="flex">
+                <router-link class="mr-4" to='/add-tag' exact>Tags</router-link>
                 <router-link class="mr-4" to='/dashboard' exact>{{user.name}}</router-link>
             </div>
         </div>

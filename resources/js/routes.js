@@ -5,6 +5,7 @@ import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import NotFound from './components/NotFound';
 import AddList from './components/AddList';
+import AddTag from './components/AddTag';
 
 export default{
     mode: 'history',
@@ -56,6 +57,11 @@ export default{
             path: "/add-list",
             name: "AddList",
             component: AddList,
-        }
+        },
+        {
+            path: '/add-tag',
+            component: AddTag,
+            name: 'AddTag'
+        },
     ]
 }

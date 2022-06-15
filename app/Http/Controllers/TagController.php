@@ -12,9 +12,10 @@ class TagController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        $tags = Tag::where('user_id', $request->user()->id)->get();
+        return response()->json($tags);
     }
 
     /**
@@ -35,7 +36,12 @@ class TagController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $tag = new Tag();
+        $tag->name = $request->name;
+        $tag->user_id = $request->user_id;
+        $tag->colro = $request->color;
+        $tag->save();
+
     }
 
     /**

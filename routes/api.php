@@ -31,3 +31,7 @@ Route::delete(('/todo-lists/{id}'), 'TodoListController@destroy');
 
 Route::post(('/todo-lists/{id}/todos'), 'TodoController@store');
 Route::put(('/todo-lists/{id}/todos/{todoId}'), 'TodoController@update');
+
+Route::get(('/tags'), 'TagController@index');
+Route::post(('/tags'), 'TagController@store');
+
