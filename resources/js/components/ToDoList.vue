@@ -39,19 +39,16 @@ export default {
         }
     },
     created() {
-        this.color = this.toDoList.color ? this.toHex(this.toDoList.color) : null
+        this.color = this.toDoList.color ? toHex(this.toDoList.color) : null
     },
     methods: {
-        toHex(number) {
-            return '#' + number.toString(16)
-        },
         deleteList() {
             axios.delete(`/api/todo-lists/${this.toDoList.id}`).then(() => {
                 this.$emit('refresh')
             })
         },
         submit() {
-            if(this.color) this.toDoList.color = Number(`0x${this.color.substring(1)}`);
+            if(this.color) this.toDoList.color = colorNumber(this.color);
 
             axios.put(`/api/todo-lists/${this.toDoList.id}`, this.toDoList).then(() => {
                 this.$emit('refresh')
