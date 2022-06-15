@@ -1996,8 +1996,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'AddTag',
@@ -2365,13 +2363,39 @@ __webpack_require__.r(__webpack_exports__);
       color: null
     };
   },
+  computed: {
+    colorNumb: function colorNumb() {
+      if (this.color) {
+        return Number("0x".concat(this.color.substring(1)));
+      } else {
+        return null;
+      }
+    }
+  },
   methods: {
-    toHex: function toHex() {
-      this.color = '#' + this.tag.color.toString(16);
+    toHex: function toHex(number) {
+      if (number) return '#' + number.toString(16);else return null;
+    },
+    update: function update() {
+      var _this = this;
+
+      axios.put('/api/tags/' + this.tag.id, {
+        name: this.tag.name,
+        color: this.colorNumb
+      }).then(function () {
+        _this.edit = false;
+      });
+    },
+    deleteTag: function deleteTag() {
+      var _this2 = this;
+
+      axios["delete"]('/api/tags/' + this.tag.id).then(function () {
+        _this2.$emit('refresh');
+      });
     }
   },
   created: function created() {
-    this.toHex();
+    this.color = this.toHex(this.tag.color);
   }
 });
 
@@ -21035,12 +21059,11 @@ var render = function() {
     "div",
     [
       _vm._l(_vm.arrTags, function(tag) {
-        return _c(
-          "div",
-          { key: tag.name },
-          [_c("tag", { attrs: { tag: tag } })],
-          1
-        )
+        return _c("tag", {
+          key: tag.id,
+          attrs: { tag: tag },
+          on: { refresh: _vm.getTags }
+        })
       }),
       _vm._v(" "),
       !_vm.addTag
@@ -21689,7 +21712,9 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     !_vm.edit
-      ? _c("p", [_vm._v(_vm._s(_vm.tag.name))])
+      ? _c("p", { style: [{ backgroundColor: _vm.color }] }, [
+          _vm._v(_vm._s(_vm.tag.name))
+        ])
       : _c("input", {
           directives: [
             {
@@ -21713,7 +21738,7 @@ var render = function() {
               ) {
                 return null
               }
-              return _vm.submit($event)
+              return _vm.update($event)
             },
             input: function($event) {
               if ($event.target.composing) {
@@ -21760,7 +21785,11 @@ var render = function() {
           },
           [_vm._v("Edit")]
         )
-      : _c("button", { staticClass: "text-gray-600" }, [_vm._v("Done")]),
+      : _c(
+          "button",
+          { staticClass: "text-gray-600", on: { click: _vm.update } },
+          [_vm._v("Done")]
+        ),
     _vm._v(" "),
     _vm.edit
       ? _c(
@@ -21777,7 +21806,11 @@ var render = function() {
         )
       : _vm._e(),
     _vm._v(" "),
-    _c("button", { staticClass: "bg-red-600 text-white" }, [_vm._v("X")])
+    _c(
+      "button",
+      { staticClass: "bg-red-600 text-white", on: { click: _vm.deleteTag } },
+      [_vm._v("X")]
+    )
   ])
 }
 var staticRenderFns = []
@@ -37378,21 +37411,31 @@ module.exports = function(module) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./routes */ "./resources/js/routes.js");
-/* harmony import */ var _views_App_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./views/App.vue */ "./resources/js/views/App.vue");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
+/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./routes */ "./resources/js/routes.js");
+/* harmony import */ var _views_App_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./views/App.vue */ "./resources/js/views/App.vue");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 
 
 
-Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]);
-var app = new Vue({
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.mixin({
+  methods: {
+    hexToNumber: function hexToNumber(hex) {
+      return Number("0x".concat(hex.substring(1)));
+    }
+  }
+});
+var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#app',
-  router: new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"](_routes__WEBPACK_IMPORTED_MODULE_1__["default"]),
+  router: new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"](_routes__WEBPACK_IMPORTED_MODULE_2__["default"]),
   render: function render(h) {
-    return h(_views_App_vue__WEBPACK_IMPORTED_MODULE_2__["default"]);
+    return h(_views_App_vue__WEBPACK_IMPORTED_MODULE_3__["default"]);
   }
 });
 
@@ -38494,8 +38537,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\boolean\classe 56\todo2\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\boolean\classe 56\todo2\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\alexi\Documents\Boolean\Side-Project\todo2\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\alexi\Documents\Boolean\Side-Project\todo2\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

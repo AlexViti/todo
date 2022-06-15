@@ -1,8 +1,6 @@
 <template>
     <div>
-        <div v-for="tag in arrTags" :key="tag.name">
-            <tag :tag="tag"/>
-        </div>
+        <tag v-for="tag in arrTags" :key="tag.id" :tag="tag" @refresh="getTags" />
         <button v-if="!addTag" @click="addTag = true">Add Tag</button>
         <form v-if="addTag" @submit.prevent="createTag()">
             <input type="text" v-model="tagName">

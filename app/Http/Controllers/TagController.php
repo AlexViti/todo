@@ -73,9 +73,12 @@ class TagController extends Controller
      * @param  \App\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Tag $tag)
+    public function update($id, Request $request)
     {
-        //
+        $tag = Tag::find($id);
+        $tag->name = $request->name;
+        $tag->color = $request->color;
+        $tag->save();
     }
 
     /**
@@ -84,8 +87,11 @@ class TagController extends Controller
      * @param  \App\Tag  $tag
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Tag $tag)
+    public function destroy(Request $request)
     {
-        //
+        if ($request->id) {
+            $tag = Tag::find($request->id);
+            $tag->delete();
+        }
     }
 }

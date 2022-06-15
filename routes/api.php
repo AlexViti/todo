@@ -34,4 +34,6 @@ Route::put(('/todo-lists/{id}/todos/{todoId}'), 'TodoController@update');
 
 Route::get(('/tags'), 'TagController@index');
 Route::post(('/tags'), 'TagController@store');
+Route::put(('/tags/{id}'), 'TagController@update');
+Route::delete(('/tags/{id}'), 'TagController@destroy');
 
