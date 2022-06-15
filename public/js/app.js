@@ -2360,9 +2360,12 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    this.color = this.toDoList.color ? toHex(this.toDoList.color) : null;
+    this.color = this.toDoList.color ? this.toHex(this.toDoList.color) : null;
   },
   methods: {
+    toHex: function toHex(number) {
+      return '#' + number.toString(16);
+    },
     deleteList: function deleteList() {
       var _this = this;
 
@@ -2373,7 +2376,7 @@ __webpack_require__.r(__webpack_exports__);
     submit: function submit() {
       var _this2 = this;
 
-      if (this.color) this.toDoList.color = colorNumber(this.color);
+      if (this.color) this.toDoList.color = Number("0x".concat(this.color.substring(1)));
       axios.put("/api/todo-lists/".concat(this.toDoList.id), this.toDoList).then(function () {
         _this2.$emit('refresh');
       }).then(function () {
@@ -37021,16 +37024,6 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 
 vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]);
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.mixin({
-  methods: {
-    toHex: function toHex(number) {
-      return "#".concat(number.toString(16));
-    },
-    colorNumber: function colorNumber(string) {
-      Number("0x".concat(string.substring(1)));
-    }
-  }
-});
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#app',
   router: new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"](_routes__WEBPACK_IMPORTED_MODULE_2__["default"]),

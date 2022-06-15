@@ -8,16 +8,6 @@ import routes from './routes';
 import App from './views/App.vue';
 
 Vue.use(VueRouter);
-Vue.mixin({
-    methods: {
-        toHex(number) {
-            return `#${number.toString(16)}`;
-        },
-        colorNumber(string) {
-            Number(`0x${string.substring(1)}`)
-        }
-    }
-})
 
 const app = new Vue({
     el: '#app',
