@@ -1,21 +1,24 @@
 <template>
     <div>
         <div v-for="tag in arrTags" :key="tag.name">
-            <p>{{ tag.name }}</p>
+            <tag :tag="tag"/>
         </div>
         <button v-if="!addTag" @click="addTag = true">Add Tag</button>
         <form v-if="addTag" @submit.prevent="createTag()">
             <input type="text" v-model="tagName">
             <input type="color" v-model="tagColorHex" />
             <button>Confirm</button>
+            <button @click="addTag = false">abort</button>
         </form>
     </div>
 </template>
 
 <script>
+import Tag from './Tag.vue'
 export default {
     name: 'AddTag',
     props: ['user'],
+    components: {Tag},
     data() {
         return {
             arrTags: [],
@@ -38,6 +41,8 @@ export default {
                 user_id: this.user.id,
             }).then(() => {
                 this.addTag = false
+                this.tagName = ''
+                this.tagColorHex = null,
                 this.getTags()
             })
         }

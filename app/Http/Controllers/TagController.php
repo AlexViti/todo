@@ -39,7 +39,7 @@ class TagController extends Controller
         $tag = new Tag();
         $tag->name = $request->name;
         $tag->user_id = $request->user_id;
-        $tag->colro = $request->color;
+        $tag->color = $request->color;
         $tag->save();
 
     }
