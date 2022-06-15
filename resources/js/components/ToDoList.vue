@@ -14,6 +14,10 @@
                 <button v-else @click="submit" class="text-gray-600">Done</button>
                 <button v-if="edit" @click="edit = false" class="text-gray-600">Cancel</button>
                 <button class="bg-red-600 text-white" @click="deleteList">X</button>
+
+                <div class="flex justify-center content-center p-2 bg-white rounded-full w-10 h-10 cursor-pointer">
+                    <i class="fa-solid fa-ellipsis"></i>
+                </div>
             </div>
             <todos :toDoList="toDoList" @added="addedTodo" />
         </div>
