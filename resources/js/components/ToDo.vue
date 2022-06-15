@@ -1,5 +1,5 @@
 <template>
-    <li @contextmenu.prevent="deleteMenu = true">
+    <li @contextmenu.prevent="deleteMenu = true" class="bg-blue-200">
         <div class="flex items-center">
             <h4 class="text-2xl" >{{todo.title}}</h4>
             <p class="ml-2 description">{{todo.description}}</p>

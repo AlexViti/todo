@@ -1,5 +1,5 @@
 <template>
-    <div class="text-gray-800">
+    <div class="text-gray-800 bg-blue-800">
         <to-do-list v-for="(toDoList, i) in toDoLists" :key="i" :toDoList="toDoList" @refresh="getTodoLists" />
         <router-link to="/add-list">Add list</router-link>
     </div>

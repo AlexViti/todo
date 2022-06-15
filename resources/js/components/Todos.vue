@@ -1,5 +1,5 @@
 <template>
-    <ul>
+    <ul class="bg-blue-400">
         <to-do v-for="(todo, i) in toDoList.todos" :key="i" :todo="todo" />
         <button v-if="!addTodo" @click="addTodo = true" class="bg-blue-600 text-white">Add todo</button>
         <add-todo v-if="addTodo" @added="addedToDo" :toDoList="toDoList" />

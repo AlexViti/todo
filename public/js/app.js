@@ -21046,7 +21046,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "text-gray-800" },
+    { staticClass: "text-gray-800 bg-blue-800" },
     [
       _vm._l(_vm.toDoLists, function(toDoList, i) {
         return _c("to-do-list", {
@@ -21447,6 +21447,7 @@ var render = function() {
   return _c(
     "li",
     {
+      staticClass: "bg-blue-200",
       on: {
         contextmenu: function($event) {
           $event.preventDefault()
@@ -21525,7 +21526,7 @@ var render = function() {
     _c(
       "div",
       [
-        _c("div", { staticClass: "flex" }, [
+        _c("div", { staticClass: "flex bg-blue-600" }, [
           !_vm.edit
             ? _c(
                 "h3",
@@ -21682,6 +21683,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "ul",
+    { staticClass: "bg-blue-400" },
     [
       _vm._l(_vm.toDoList.todos, function(todo, i) {
         return _c("to-do", { key: i, attrs: { todo: todo } })
@@ -37983,8 +37985,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\alexi\Documents\Boolean\Side-Project\todo2\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\alexi\Documents\Boolean\Side-Project\todo2\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\windo\Documents\Boolean\Side Project\todo2\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\windo\Documents\Boolean\Side Project\todo2\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
