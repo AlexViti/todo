@@ -14,4 +14,9 @@ class ToDo extends Model
     {
         return $this->belongsTo(TodoList::class);
     }
+
+    public function tags()
+    {
+        return $this->hasMany(Tag::class);
+    }
 }
