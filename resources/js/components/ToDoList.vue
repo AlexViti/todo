@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div>
+        <div class="mb-5 bg-blue-500">
             <div class="flex">
                 <h3 v-if="!edit" class="text-3xl mr-auto w-full"
                     :style="[toDoList.color ? {backgroundColor: toHex(toDoList.color), color: '#fff'} : {}]"

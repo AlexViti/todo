@@ -21915,6 +21915,7 @@ var render = function() {
   return _c("div", [
     _c(
       "div",
+      { staticClass: "mb-5 bg-blue-500" },
       [
         _c("div", { staticClass: "flex" }, [
           !_vm.edit
@@ -38537,8 +38538,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\alexi\Documents\Boolean\Side-Project\todo2\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\alexi\Documents\Boolean\Side-Project\todo2\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\windo\Documents\Boolean\Side Project\todo2\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\windo\Documents\Boolean\Side Project\todo2\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
