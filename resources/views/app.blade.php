@@ -11,7 +11,6 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -22,5 +21,6 @@
 </head>
 <body>
     <div id="app"></div>
+    <script src="https://unpkg.com/flowbite@1.4.7/dist/flowbite.js" defer></script>
 </body>
 </html>
