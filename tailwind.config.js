@@ -1,8 +1,14 @@
 module.exports = {
-  purge: [],
+  content: ['./resources/**/*.vue',
+  "./resources/**/*.blade.php",
+  "./resources/**/*.js",
+  "./node_modules/flowbite/**/*.js"
+],
   theme: {
     extend: {},
   },
   variants: {},
-  plugins: [],
+  plugins: [
+    require('flowbite/plugin')
+  ],
 }

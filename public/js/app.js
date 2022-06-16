@@ -2339,6 +2339,29 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -21647,7 +21670,49 @@ var render = function() {
               on: { click: _vm.deleteList }
             },
             [_vm._v("X")]
-          )
+          ),
+          _vm._v(" "),
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass:
+                "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800",
+              attrs: {
+                id: "dropdownDefault",
+                "data-dropdown-toggle": "dropdown",
+                type: "button"
+              }
+            },
+            [
+              _vm._v("Dropdown button "),
+              _c(
+                "svg",
+                {
+                  staticClass: "w-4 h-4 ml-2",
+                  attrs: {
+                    fill: "none",
+                    stroke: "currentColor",
+                    viewBox: "0 0 24 24",
+                    xmlns: "http://www.w3.org/2000/svg"
+                  }
+                },
+                [
+                  _c("path", {
+                    attrs: {
+                      "stroke-linecap": "round",
+                      "stroke-linejoin": "round",
+                      "stroke-width": "2",
+                      d: "M19 9l-7 7-7-7"
+                    }
+                  })
+                ]
+              )
+            ]
+          ),
+          _vm._v(" "),
+          _vm._m(1)
         ]),
         _vm._v(" "),
         _c("todos", {
@@ -21659,7 +21724,92 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "flex justify-center content-center p-2 bg-white rounded-full w-10 h-10 cursor-pointer"
+      },
+      [_c("i", { staticClass: "fa-solid fa-ellipsis" })]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "z-10 hidden bg-white divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700",
+        attrs: { id: "dropdown" }
+      },
+      [
+        _c(
+          "ul",
+          {
+            staticClass: "py-1 text-sm text-gray-700 dark:text-gray-200",
+            attrs: { "aria-labelledby": "dropdownDefault" }
+          },
+          [
+            _c("li", [
+              _c(
+                "a",
+                {
+                  staticClass:
+                    "block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white",
+                  attrs: { href: "#" }
+                },
+                [_vm._v("Dashboard")]
+              )
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c(
+                "a",
+                {
+                  staticClass:
+                    "block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white",
+                  attrs: { href: "#" }
+                },
+                [_vm._v("Settings")]
+              )
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c(
+                "a",
+                {
+                  staticClass:
+                    "block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white",
+                  attrs: { href: "#" }
+                },
+                [_vm._v("Earnings")]
+              )
+            ]),
+            _vm._v(" "),
+            _c("li", [
+              _c(
+                "a",
+                {
+                  staticClass:
+                    "block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white",
+                  attrs: { href: "#" }
+                },
+                [_vm._v("Sign out")]
+              )
+            ])
+          ]
+        )
+      ]
+    )
+  }
+]
 render._withStripped = true
 
 
