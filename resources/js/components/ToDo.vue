@@ -1,8 +1,10 @@
 <template>
     <li @contextmenu.prevent="deleteMenu = true">
         <div class="flex items-center">
-            <h4 class="text-2xl" >{{todo.title}}</h4>
-            <p class="ml-2 description">{{todo.description}}</p>
+            <div>
+                <h4 class="text-2xl" >{{todo.title}}</h4>
+                <p class="ml-2 description">{{todo.description}}</p>
+            </div>
             <button class="ml-auto" @click="toggleTodo()">{{todo.completed ? '✓' : '✗'}}</button>
         </div>
         <button v-show="deleteMenu" class="fixed bg-red-600 text-white" @click="deleteTodo()">Delete</button>

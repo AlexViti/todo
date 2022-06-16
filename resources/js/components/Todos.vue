@@ -1,7 +1,7 @@
 <template>
-    <ul>
+    <ul class="p-2">
         <to-do v-for="(todo, i) in toDoList.todos" :key="i" :todo="todo" />
-        <button v-if="!addTodo" @click="addTodo = true" class="bg-blue-600 text-white">Add todo</button>
+        <button v-if="!addTodo" @click="addTodo = true" class="rounded bg-blue-600 text-white">New Task</button>
         <add-todo v-if="addTodo" @added="addedToDo" :toDoList="toDoList" />
     </ul>
 </template>
